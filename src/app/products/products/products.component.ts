@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { catchError, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -14,11 +15,13 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 export class ProductsComponent implements OnInit {
 
   products$: Observable<Product[]>;
-  displayedColumns = ['code', 'name', 'description', 'price'];
+  displayedColumns = ['code', 'name', 'description', 'price', 'actions'];
 
   constructor(
     public dialog: MatDialog,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private router: Router,
+    private route: ActivatedRoute
     ) {
     this.products$ = this.productsService.listAllProducts()
     .pipe(
@@ -37,6 +40,10 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  onAdd(){
+    this.router.navigate(['new'], {relativeTo: this.route})
   }
 
 }
