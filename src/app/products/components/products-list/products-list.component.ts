@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Product } from '../models/product';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Product } from '../../models/product';
 import { AppMaterialModule } from 'src/app/shared/app-material/app-material.module';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-list',
@@ -13,19 +12,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductsListComponent implements OnInit {
 
   @Input() products: Product[] = [];
+  @Output() add = new EventEmitter(false);
+
   readonly displayedColumns = ['code', 'name', 'description', 'price', 'actions'];
 
-  constructor(private router: Router,
-    private route: ActivatedRoute){
+  constructor(){
 
   }
 
   ngOnInit(): void {
-    
+
   }
 
   onAdd(){
-    this.router.navigate(['new'], {relativeTo: this.route})
+    this.add.emit(true);
   }
 
 }
