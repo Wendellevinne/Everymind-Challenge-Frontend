@@ -7,7 +7,7 @@ import { delay, first, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductsService {
-  private readonly API = 'http://localhost:8080/api/v1/nunessports/';
+  private readonly API = 'api/v1/nunessports/';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -15,7 +15,6 @@ export class ProductsService {
     return this.httpClient.get<Product[]>(this.API + 'products')
     .pipe(
       first(),
-      delay(5000),
       tap(products => console.log(products))
     );
   }
