@@ -6,18 +6,20 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products/products.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductsListComponent } from "./products-list/products-list.component";
 
 
 @NgModule({
-  declarations: [
-    ProductsComponent
-  ],
-  imports: [
-    CommonModule,
-    ProductsRoutingModule,
-    AppMaterialModule,
-    SharedModule,
-    ReactiveFormsModule
-  ]
+    declarations: [
+        ProductsComponent
+    ],
+    imports: [
+        CommonModule,
+        ProductsRoutingModule,
+        AppMaterialModule,
+        SharedModule,
+        ReactiveFormsModule,
+        ProductsListComponent
+    ]
 })
 export class ProductsModule { }
