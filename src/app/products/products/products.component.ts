@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-products',
@@ -8,15 +9,15 @@ import { Product } from '../models/product';
 })
 export class ProductsComponent implements OnInit {
 
-  products: Product[] = [
-    { code: '00001', name: 'Tênis Adidas', description: 'Tênis Adidas', price: 350}
-  ];
-  displayedColumns = ['code', 'name', 'description', 'price']
+  products: Product[] = [];
+  displayedColumns = ['code', 'name', 'description', 'price'];
 
-  constructor() { }
+  constructor(private productsService: ProductsService) {
+
+   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.products = this.productsService.listAllProducts();
   }
 
 }
