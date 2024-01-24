@@ -12,10 +12,13 @@ export class ProductsService {
   constructor(private httpClient: HttpClient) {}
 
   listAllProducts() {
-    return this.httpClient.get<Product[]>(this.API + 'products')
-    .pipe(
+    return this.httpClient.get<Product[]>(this.API + 'products').pipe(
       first(),
-      tap(products => console.log(products))
+      tap((products) => console.log(products))
     );
+  }
+
+  saveProduct(product: Product){
+    return this.httpClient.post<Product>(this.API + 'registerProduct', product)
   }
 }
