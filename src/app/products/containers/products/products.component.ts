@@ -11,10 +11,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-
   products$: Observable<Product[]> | null = null;
 
   constructor(
@@ -23,50 +22,46 @@ export class ProductsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar
-    ) {
+  ) {
     this.refresh();
-   }
+  }
 
-   refresh(){
-    this.products$ = this.productsService.listAllProducts()
-    .pipe(
-      catchError(error =>{
+  refresh() {
+    this.products$ = this.productsService.listAllProducts().pipe(
+      catchError((error) => {
         this.onError('Erro ao carregar os produtos');
-        return of([])
+        return of([]);
       })
-    )
-   }
+    );
+  }
 
-   onError(errorMessage: string) {
+  onError(errorMessage: string) {
     this.dialog.open(ErrorDialogComponent, {
-      data: errorMessage
+      data: errorMessage,
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
+  onAdd() {
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 
-  onAdd(){
-    this.router.navigate(['new'], {relativeTo: this.route});
+  onEdit(product: Product) {
+    this.router.navigate(['edit', product.id], { relativeTo: this.route });
   }
 
-  onEdit(product: Product){
-    this.router.navigate(['edit', product.id], {relativeTo: this.route});
-  }
-
-  onDelete(product: Product){
+  onDelete(product: Product) {
     this.productsService.removeProduct(product.id).subscribe(
       () => {
         this.refresh();
         this._snackBar.open('Produto removido com sucesso', 'X', {
           duration: 5000,
           verticalPosition: 'top',
-          horizontalPosition: 'center'
-         });
+          horizontalPosition: 'center',
+        });
       },
       () => this.onError('Erro ao tentar remover curso')
     );
   }
-
 }
