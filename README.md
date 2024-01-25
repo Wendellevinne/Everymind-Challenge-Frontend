@@ -1,27 +1,29 @@
-# NunesSportsFrontend
+# Everymind-Challenge-Backend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+Parte do front-end da aplicação requisitada pelo processo seletivo "Programa Best Minds 2024 - Pessoa Desenvolvedora Trainee". Resolvi dividir o back-end do front-end para deixar as duas aplicações relativamente independentes e permitir com que pudessem ser acopladas em outros projetos.
 
-## Development server
+A aplicação é um site que recebe entradas de produtos de um banco de dados e as renderiza como linhas para uma tabela. Nessa tabela, o usuário é capaz de verificar os dados dos produtos, criar novos produtos, editar e deletar produtos já
+existentes na tabela. A tabela exibe quatro informações em relação aos produtos, que são código, nome, descrição e preço.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Utilizei o framework Angular na versão 17 para realizar a construção dessa aplicação, em conjunto com HTML, CSS, Javascript e Typescript. 
 
-## Code scaffolding
+## Como executar a aplicação
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Pré-requisitos:** Node.js versão equivalente ou acima da 18.13.0
 
-## Build
+Baixe ou copie este repositório para a sua máquina local, acesse a pasta da aplicação e rode o comando **npm run start**. A rota para acessar a aplicação é a *http://localhost:4200*.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+O comando acima é diferente do *ng serve* pelo fato de eu estar usando um proxy para permitir que a aplicação consiga interagir com aplicações de outros domínios, interação que seria barrada por CORS. Resolvi testar esse método nesse projeto, ao invés de configurar um WebConfig no back-end. O proxy está configurado com o endereço *http://localhost:8080/*
 
-## Running unit tests
+Na tela da aplicação, o botão em verde escrito "Novo Produto" abre um formulário em que é possível cadastrar e salvar um novo produto no banco de dados, ao fornecer os dados requisitados no mesmo. O ícone do lápis permite a edição da entrada da tabela e a lixeira permite a deleção da entrada da tabela. As opções de edição e deleção só ficarão disponíveis caso o Front-end consiga requisitar informações do Back-end.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+O site possui algumas mensagens de erro, para caso ocorram problemas durante a execução de suas operações, e um gif de carregamento, para caso o sistema demore para retornar os dados requisitados pelo Front-end.
 
-## Running end-to-end tests
+## Como realizar a integração entre os sistemas
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Basta rodar este e o sistema Everymind-Challenge-Backend simultaneamente em uma mesma máquina. As rotas dos projetos já estão configuradas para se integrarem.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## TO-DO LIST
+- Colocar uma caixa de diálogo para a operação de deleção;
+- Terminar de ajustar as cores da aplicação;
+- Colocar validações nos formulários.
