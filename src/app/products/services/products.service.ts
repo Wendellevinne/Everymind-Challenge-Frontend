@@ -14,16 +14,30 @@ export class ProductsService {
   listAllProducts() {
     return this.httpClient.get<Product[]>(`${this.API}/products`).pipe(
       first(),
-      //delay(5000),
       tap((products) => console.log(products))
     );
   }
 
-  loadProductById(code: string) {
-    return this.httpClient.get<Product>(`${this.API}/product/${code}`);
+  loadProductById(id: string) {
+    return this.httpClient.get<Product>(`${this.API}/product/${id}`);
   }
 
   saveProduct(product: Partial<Product>) {
+    if(product.id){
+      return this.updateProduct(product);
+    }
+    return this.createProduct(product);
+  }
+
+  private createProduct(product: Partial<Product>){
     return this.httpClient.post<Product>(`${this.API}/registerProduct`, product);
+  }
+
+  private updateProduct(product: Partial<Product>){
+    return this.httpClient.put<Product>(`${this.API}/updateProduct/${product.id}`, product);
+  }
+
+  removeProduct(id: number){
+    return this.httpClient.delete(`${this.API}/deleteProduct/${id}`);
   }
 }

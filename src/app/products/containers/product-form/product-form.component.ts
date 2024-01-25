@@ -16,6 +16,7 @@ import { Product } from '../../models/product';
 })
 export class ProductFormComponent implements OnInit {
   form = this.formBuilder.group({
+    id: [0],
     code: [''],
     name: [''],
     description: [''],
@@ -32,6 +33,7 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {
     const product: Product = this.route.snapshot.data['product'];
     this.form.setValue({
+      id: product.id,
       code: product.code,
       name: product.name,
       description: product.description,

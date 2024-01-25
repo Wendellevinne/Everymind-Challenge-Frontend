@@ -14,6 +14,7 @@ export class ProductsListComponent implements OnInit {
   @Input() products: Product[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
+  @Output() delete = new EventEmitter(false);
 
   readonly displayedColumns = ['code', 'name', 'description', 'price', 'actions'];
 
@@ -31,6 +32,10 @@ export class ProductsListComponent implements OnInit {
 
   onEdit(product: Product){
     this.edit.emit(product);
+  }
+
+  onDelete(product: Product){
+    this.delete.emit(product);
   }
 
 }

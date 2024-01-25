@@ -19,9 +19,9 @@ export class ProductResolver implements Resolve<Product> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product>{
-    if(route.params && route.params['code']){
-      return this.service.loadProductById(route.params['code']);
+    if(route.params && route.params['id']){
+      return this.service.loadProductById(route.params['id']);
     }
-    return of({code: '', name: '', description: '', price: 0})
+    return of({id: 0, code: '', name: '', description: '', price: 0})
   }
 };

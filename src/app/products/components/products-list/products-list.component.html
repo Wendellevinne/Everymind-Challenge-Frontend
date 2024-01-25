@@ -34,7 +34,7 @@
         <mat-icon>edit</mat-icon>
       </button>
 
-      <button mat-icon-button aria-label="Deletar produto">
+      <button (click)="onDelete(product)" mat-icon-button aria-label="Deletar produto">
         <mat-icon color="warn">delete</mat-icon>
       </button>
     </mat-cell>

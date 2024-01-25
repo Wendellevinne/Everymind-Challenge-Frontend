@@ -10,6 +10,7 @@
         [products]="products"
         (add)="onAdd()"
         (edit)="onEdit($event)"
+        (delete)="onDelete($event)"
       ></app-products-list>
 
       <ng-template #loading>

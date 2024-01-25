@@ -7,7 +7,7 @@ import { ProductResolver } from './guards/product.resolver';
 const routes: Routes = [
   { path: '', component: ProductsComponent },
   { path: 'new', component: ProductFormComponent, resolve: {product: ProductResolver} },
-  { path: 'edit/:code', component: ProductFormComponent, resolve: {product: ProductResolver} }
+  { path: 'edit/:id', component: ProductFormComponent, resolve: {product: ProductResolver} }
 ];
 
 @NgModule({
